@@ -1,8 +1,18 @@
-function [ epsilon ] = Euler_test( f, a, b, h, y_a, y_egz )
-%EULER_TEST1 Summary of this function goes here
-%   Detailed explanation goes here
-    N = (b - a)/h;
-    y_a_approx = Euler(f, 1, a, b, N);
+function [ epsilon, h ] = Euler_test( f, y0, a, b, n, y_exact, label )
+%EULER_TEST racuna inf normu odstupanja i h
 
+    epsilon = zeros(size(n));
+    h = zeros(size(n));
+    for i = 1:size(n, 1)
+        [ y_approx, h(i) ] = Euler(f, y0, a, b, n(i));
+        epsilon(i) = norm(y_approx - y_exact((a:h(i):b)'), inf);
+    end
+    
+    figure;
+    plot(h, epsilon);
+    xlabel('h');
+    ylabel('inf norma odstupanja');
+    title([ label ' - odstupanje u ovisnosti o h' ]);
+    
 end
 
