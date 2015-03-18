@@ -1,0 +1,18 @@
+function [ epsilon, h ] = RungeKutta3_test(a, c, A, f, y0, ti, tf, n, y_exact, label )
+%RUNGEKUTTA3_TEST racuna inf normu odstupanja i h
+
+    epsilon = zeros(size(n));
+    h = zeros(size(n));
+    for i = 1:size(n, 1)
+        [ y_approx, h(i) ] = RungeKutta3(f, y0, ti, tf, n(i), a, c, A);
+        epsilon(i) = norm(y_approx - y_exact((ti:h(i):tf)'), inf);
+    end
+    
+    figure;
+    loglog(h, epsilon);
+    xlabel('h');
+    ylabel('inf norma odstupanja');
+    title([ label ' - odstupanje u ovisnosti o h' ]);
+    
+end
+

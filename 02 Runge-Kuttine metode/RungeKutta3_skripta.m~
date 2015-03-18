@@ -1,0 +1,21 @@
+n = (10:2:100)';
+a
+
+
+% primjer a
+f_a = @(x, y) -x.*y + x*exp(0.5*x.^2);
+y_a_exact = @(x) cosh(0.5*x.^2);
+RungeKutta3_test(, f_a, 1, 0, 1, n, y_a_exact, 'primjer A (Kutta)');
+RungeKutta3_test(, f_a, 1, 0, 1, n, y_a_exact, 'primjer A (Heun)');
+
+% primjer b
+f_b = @(x, y) 2*x.*y + x;
+y_b_exact = @(x) 1.5*exp(x.^2)-0.5;
+RungeKutta3_test(, f_b, 1, 0, 1, n, y_b_exact, 'primjer B (Kutta)');
+RungeKutta3_test(, f_b, 1, 0, 1, n, y_b_exact, 'primjer B (Heun)');
+
+% primjer c
+f_c = @(x, y) 1 + y.^2;
+y_c_exact = @(x) tan(x+pi/4);
+RungeKutta3_test(, f_c, 1, 0, 0.5, n, y_c_exact, 'primjer C (Kutta)');
+RungeKutta3_test(, f_c, 1, 0, 0.5, n, y_c_exact, 'primjer C (Heun)');
