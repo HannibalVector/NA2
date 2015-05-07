@@ -1,0 +1,15 @@
+A = [0.5 1 0 0; 0 0.5 1 0; 0 0 0.5 1; 0 0 0 0.5];
+
+f = @(x, y) A*y;
+
+x0 =
+y0 = [1 1 1 1]';
+
+[Tt, Yt] = RK4(f, x0, x1, y0, n);
+
+
+fplot(y_egz, [t0 t1], 'k')
+hold on
+
+plot(Te, Ye, 'r')
+plot(Tt, Yt, 'b')
